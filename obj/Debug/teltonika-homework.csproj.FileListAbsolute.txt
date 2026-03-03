@@ -1,0 +1,11 @@
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\bin\Debug\teltonika-homework.exe.config
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\bin\Debug\teltonika-homework.exe
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\bin\Debug\teltonika-homework.pdb
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\obj\Debug\teltonika-homework.csproj.AssemblyReference.cache
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\obj\Debug\teltonika_homework.Form1.resources
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\obj\Debug\teltonika_homework.Properties.Resources.resources
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\obj\Debug\teltonika-homework.csproj.GenerateResource.cache
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\obj\Debug\teltonika-homework.csproj.CoreCompileInputs.cache
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\obj\Debug\teltonika-homework.exe
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\obj\Debug\teltonika-homework.pdb
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\bin\Debug\config.xml
