@@ -25,13 +25,13 @@ namespace teltonika_homework
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadData();
+            saveConfigMsg.Visible = false;
         }
-
         private void LoadData()
         {
             if (!File.Exists(_configFilePath))
             {
-                MessageBox.Show("config.xml not found!");
+                MessageBox.Show("config.xml is not found");
                 return;
             }
 
@@ -43,12 +43,14 @@ namespace teltonika_homework
                     _configData = (Config)serializer.Deserialize(fs);
                 }
 
-                txtVersion.Text = _configData.Version.Value;
-                txtUptime.Text = _configData.Uptime.Value.ToString();
+                if (_configData.Version != null)
+                    txtVersion.Text = _configData.Version.Value;
 
-                var bindingSource = new BindingSource();
-                bindingSource.DataSource = _configData.Person.Accounts;
-                dataGridViewAccounts.DataSource = bindingSource;
+                if (_configData.Uptime != null)
+                    txtUptime.Text = _configData.Uptime.Value.ToString();
+
+                dataGridViewAccounts.DataSource = null;
+                dataGridViewAccounts.DataSource = _configData.Person.Accounts;
 
                 if (dataGridViewAccounts.Columns["Password"] != null)
                 {
@@ -69,7 +71,7 @@ namespace teltonika_homework
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error reading: " + ex.Message);
+                MessageBox.Show("Error reading file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void label2_Click(object sender, EventArgs e)
@@ -95,6 +97,24 @@ namespace teltonika_homework
         private void dataGridViewAccounts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void SaveConfigBtn_Click(object sender, EventArgs e)
+        {
+
+            dataGridViewAccounts.EndEdit();
+
+            _configData.Version.Value = txtVersion.Text;
+            _configData.Uptime.Value = long.Parse(txtUptime.Text);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(Config));
+            using (FileStream fs = new FileStream(_configFilePath, FileMode.Create))
+            {
+                serializer.Serialize(fs, _configData);
+            }
+
+            saveConfigMsg.Visible = true;
+            saveConfigMsg.Text = "Configuration saved";
         }
     }
 }
