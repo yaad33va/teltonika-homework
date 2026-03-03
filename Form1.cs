@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -26,12 +27,13 @@ namespace teltonika_homework
         {
             LoadData();
             saveConfigMsg.Visible = false;
+            genPswMsg.Visible = false;
         }
         private void LoadData()
         {
             if (!File.Exists(_configFilePath))
             {
-                MessageBox.Show("config.xml is not found");
+                MessageBox.Show("config.xml is not found.");
                 return;
             }
 
@@ -113,8 +115,92 @@ namespace teltonika_homework
                 serializer.Serialize(fs, _configData);
             }
 
-            saveConfigMsg.Visible = true;
-            saveConfigMsg.Text = "Configuration saved";
+            genPswMsg.Visible = true;
+            genPswMsg.Text = "Configuration saved.";
+        }
+
+        private void generatePswBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAccounts.SelectedRows.Count == 0)
+            {
+                genPswMsg.Visible = true;
+                genPswMsg.Text = "Select at least one user from the table by clicking on the row header on the left.";
+                return;
+            }
+
+            List<string> selectedUsernames = new List<string>();
+
+            foreach (DataGridViewRow row in dataGridViewAccounts.SelectedRows)
+            {
+                if (row.DataBoundItem is Account account)
+                {
+                    selectedUsernames.Add(account.UserName);
+                }
+            }
+
+            string scriptFileName = "gen_pass.sh";
+            string args = string.Join(" ", selectedUsernames);
+
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.FileName = "bash"; 
+            psi.Arguments = $"{scriptFileName} {args}";
+            psi.UseShellExecute = false;
+            psi.CreateNoWindow = true; 
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardError = true;
+
+          
+            using (Process process = Process.Start(psi))
+            {
+                process.WaitForExit(); 
+            }
+            
+            string resultFile = "generated_passwords.txt";
+
+            if (!File.Exists(resultFile))
+            {
+                genPswMsg.Visible = true;
+                genPswMsg.Text = "Passwords file was not created.";
+                return;
+            }
+
+            try
+            {
+                string[] lines = File.ReadAllLines(resultFile);
+
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split(':');
+                    if (parts.Length == 2)
+                    {
+                        string user = parts[0];
+                        string newPass = parts[1];
+
+                        // Kuriems vartotojams atnaujinti slaptažodį.
+                        foreach (var acc in _configData.Person.Accounts)
+                        {
+                            if (acc.UserName == user)
+                            {
+                                acc.PasswordText = newPass;
+                                acc.PasswordType = "plaintext";
+                                break; 
+                            }
+                        }
+                    }
+                }
+
+                dataGridViewAccounts.Refresh();
+
+                File.Delete(resultFile);
+
+                genPswMsg.Visible = true;
+                genPswMsg.Text = $"Successfuly updated {lines.Length} passwords";
+            }
+            catch (Exception ex)
+            {
+                genPswMsg.Visible = true;
+                genPswMsg.Text = "Klaida apdorojant rezultatus: " + ex.Message;
+            }
         }
     }
 }

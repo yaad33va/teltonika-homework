@@ -36,6 +36,7 @@
             this.SaveConfigBtn = new System.Windows.Forms.Button();
             this.generatePswBtn = new System.Windows.Forms.Button();
             this.saveConfigMsg = new System.Windows.Forms.Label();
+            this.genPswMsg = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,21 +98,32 @@
             this.generatePswBtn.TabIndex = 6;
             this.generatePswBtn.Text = "Generate Passwords";
             this.generatePswBtn.UseVisualStyleBackColor = true;
+            this.generatePswBtn.Click += new System.EventHandler(this.generatePswBtn_Click);
             // 
             // saveConfigMsg
             // 
             this.saveConfigMsg.AutoSize = true;
-            this.saveConfigMsg.Location = new System.Drawing.Point(22, 266);
+            this.saveConfigMsg.Location = new System.Drawing.Point(39, 268);
             this.saveConfigMsg.Name = "saveConfigMsg";
             this.saveConfigMsg.Size = new System.Drawing.Size(35, 13);
             this.saveConfigMsg.TabIndex = 7;
             this.saveConfigMsg.Text = "label1";
+            // 
+            // genPswMsg
+            // 
+            this.genPswMsg.AutoSize = true;
+            this.genPswMsg.Location = new System.Drawing.Point(220, 268);
+            this.genPswMsg.Name = "genPswMsg";
+            this.genPswMsg.Size = new System.Drawing.Size(35, 13);
+            this.genPswMsg.TabIndex = 8;
+            this.genPswMsg.Text = "label1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 318);
+            this.Controls.Add(this.genPswMsg);
             this.Controls.Add(this.saveConfigMsg);
             this.Controls.Add(this.generatePswBtn);
             this.Controls.Add(this.SaveConfigBtn);
@@ -139,6 +151,7 @@
         private System.Windows.Forms.Button SaveConfigBtn;
         private System.Windows.Forms.Button generatePswBtn;
         private System.Windows.Forms.Label saveConfigMsg;
+        private System.Windows.Forms.Label genPswMsg;
     }
 }
 

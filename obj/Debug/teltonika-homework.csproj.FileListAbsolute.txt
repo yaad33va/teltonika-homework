@@ -9,3 +9,4 @@ C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\obj\Debug\teltonika
 C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\obj\Debug\teltonika-homework.exe
 C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\obj\Debug\teltonika-homework.pdb
 C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\bin\Debug\config.xml
+C:\Users\denis\Desktop\teltonika-homework\teltonika-homework\bin\Debug\gen_pass.sh

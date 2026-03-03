@@ -67,7 +67,7 @@ public class Account
         set { if (Password != null) Password.Type = value; }
     }
 }
-// Saugo slaptažodžio formatą ar enabled ar plaintext.
+// Saugo slaptažodžio formatą ar enabled, ar plaintext.
 public class PasswordItem
 {
     [XmlAttribute("type")]

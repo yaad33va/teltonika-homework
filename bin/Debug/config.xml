@@ -1,26 +1,26 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <version type="str">m14.pi-1 13 14</version>
+  <version type="str">m14.pi-1 18</version>
   <person>
     <acc id="622" enabled="1">
       <user_name>Mikas</user_name>
-      <password type="plaintext">password</password>
+      <password type="plaintext">alQHuCqVXw36</password>
     </acc>
     <acc id="2291443" enabled="0">
       <user_name>Bobas</user_name>
-      <password type="plaintext">0123456789</password>
+      <password type="plaintext">iThgmT4QjBAw</password>
     </acc>
     <acc id="14" enabled="1">
-      <user_name>Lucy</user_name>
-      <password type="plaintext">123</password>
+      <user_name>Lucys</user_name>
+      <password type="plaintext">mvAIlQoogihR</password>
     </acc>
     <acc id="9966" enabled="1">
       <user_name>testas</user_name>
-      <password type="plaintext">qw</password>
+      <password type="plaintext">qwertywerty</password>
     </acc>
     <acc id="3309" enabled="0">
       <user_name>foobar</user_name>
-      <password type="encoded">cXdlcnR5MTIzNA==</password>
+      <password type="plaintext">gjCBQu8qYX2D</password>
     </acc>
   </person>
   <uptime type="int">66148857755</uptime>
